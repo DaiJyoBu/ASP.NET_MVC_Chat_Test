@@ -1,0 +1,35 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using DomainModels
+@inject SignInManager<ChatUser> SignInManager
+@inject UserManager<ChatUser> UserManager
+@{
+    ViewData["Title"] = "Home Page";
+    string condition = SignInManager.IsSignedIn( User ) ? string.Empty : "disabled";
+}
+<div class="container">
+
+    <div class="row p-1">
+        <div class="col-1">Message</div>
+        <div class="col-5"><input type="text" class="w-100" id="messageInput" /></div>
+    </div>
+    <div class="row p-1">
+        <div class="col-6 text-end">
+            <button type="button" id="sendButton" @condition>Send</button>
+        </div>
+    </div>
+    <div class="row p-1">
+        <div class="col-6">
+            <hr />
+        </div>
+    </div>
+    <div class="row p-1">
+        <div class="col-6">
+            <ul id="messageList">
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+<script src="~/js/received_message_handling.js"></script>
+<script src="~/js/chat.js" asp-append-version="true"></script>
